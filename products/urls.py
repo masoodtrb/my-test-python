@@ -21,8 +21,12 @@ urlpatterns = [
         'get': 'list',
         'post': 'create'
     })),
-    path('products', ProductViewSet({
-        'get': 'list',
-        'post': 'create'
+    path('products/<str:pk>', ProductViewSet.as_view({
+        'get': 'load',
+        'put': 'update',
+        'delete': 'destroy'
+    })),
+    path('products/hard-delete/<str:pk>', ProductViewSet.as_view({
+        'delete': 'hard_destroy'
     })),
 ]
